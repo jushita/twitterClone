@@ -5,12 +5,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 
-from .views import tweet_detail_view, tweet_list_view
+from .views import TweetListView, TweetDetailView
 
 
 urlpatterns = [
-    url(r'^$', tweet_list_view, name='list'),
-    url(r'^1/$', tweet_detail_view, name='detail'),
+    #url(r'^admin/', admin.site.urls),
+    url(r'^$', TweetListView.as_view(), name='list'), # /tweet/
+    #url(r'^(?P<pk>\d+)/$', tweet_detail_view, name='detail'),
+    url(r'^(?P<pk>\d+)/$', TweetDetailView.as_view(), name='detail'), # /tweet/1/
 ]
 
 
