@@ -1,13 +1,10 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import DetailView, ListView, CreateView
-from .models import Tweet
 
 from .forms import TweetModelForm
-
-# Create your views here.
+from .models import Tweet
 
 # Create
-
 
 class TweetCreateView(CreateView):
     form_class = TweetModelForm
@@ -21,17 +18,18 @@ class TweetCreateView(CreateView):
 
 def tweet_create_view(request):
     form = TweetModelForm(request.POST or None)
-
     if form.is_valid():
         instance = form.save(commit=False)
         instance.user = request.user
         instance.save()
-        context = {
-            "form": form
-        }
-        return render(request, 'tweets/create_view.html', context)
+    context = {
+        "form":form
+    }
+    return render(request, 'tweets/create_view.html', context)
 
-#Update
+
+
+# Update
 
 #Delete
 
